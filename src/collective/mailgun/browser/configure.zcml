@@ -1,0 +1,19 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="collective.mailgun">
+
+  <!-- BrowserView that sends a mail with content extracted from a Dexterity object -->
+  <!-- TODO later: Extend to Archetypes object -->
+  <browser:page
+    name="send_email"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    layer="collective.mailgun.interfaces.ICollectiveMailgunLayer"
+    class=".send_email.SendEmailView"
+    permission="cmf.ManagePortal"
+    />
+
+
+</configure>

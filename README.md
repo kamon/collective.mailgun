@@ -1,4 +1,4 @@
 collective.mailgun
-==================
+====================
 
-Mailgun support for Plone
+A Plone add-on for sending emails from your Plone app using MailGun.

@@ -1,0 +1,6 @@
+<layers>
+  <layer
+    name="collective.mailgun"
+    interface="collective.mailgun.interfaces.ICollectiveMailgunLayer"
+    />
+</layers>

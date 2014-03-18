@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="collective.mailgun.interfaces.IMailingSettings">
+      <value key="mailing_api_key"></value>
+      <value key="mailing_domain"></value>
+      <value key="mailing_address"></value>
+      <value key="mailing_from_email"></value>
+
+  </records>
+</registry>
