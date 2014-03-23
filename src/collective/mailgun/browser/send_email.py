@@ -13,13 +13,8 @@ from Products.CMFCore.utils import getToolByName
 from mailgun import MailgunAPI
 from mailgun.mailinglist import MailingList
 
-#from plone.app.contenttypes.interfaces import (
-#    ICollection,
-#    IDocument,
-#    INewsItem,
-#    IEvent,
-#)
-from plone.app.contenttypes.behaviors.richtext import IRichText
+# TODO: Conditional import so we can use the richtext behavior from Plone 5
+#from plone.app.contenttypes.behaviors.richtext import IRichText
 
 from collective.mailgun.interfaces import IMailingSettings
 
@@ -75,10 +70,11 @@ class SendEmailView(BrowserView):
         context = self.context
         request = self.request
 
-        # Get the text from the content object if Dexterity and IRichText behavior.
+        # Get the text from the content object if Dexterity Document.
         text = '<h1>%s</h1>' % context.Title()
-        if IRichText.providedBy(context):
-            text = text + context.text.output
+        #if IRichText.providedBy(context):
+        #    text = text + context.text.output
+        text = text + context.text.output  # Should only work with Documents for now.
         
         return text
         
