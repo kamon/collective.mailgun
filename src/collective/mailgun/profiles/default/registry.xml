@@ -6,5 +6,8 @@
       <value key="mailing_address"></value>
       <value key="mailing_from_email"></value>
 
+      <value key="mailing_message_header"></value>
+      <value key="mailing_message_footer"></value>
+
   </records>
 </registry>

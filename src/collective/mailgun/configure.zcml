@@ -25,5 +25,13 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <plone:behavior
+    title="Mail Message Text"
+    description="Mail Message text field for optional editing before sending"
+    provides=".behaviors.IMailMessageText"
+    factory=".behaviors.MailMessageText"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".behaviors.IMailMessageText"
+    />
 
 </configure>

@@ -39,3 +39,13 @@ class IMailingSettings(Interface):
         title=_(u"mailing_from_email"),
         default=u'',
         )
+
+    mailing_message_header = schema.Text(
+        title=_(u"mailing_message_header"),
+        default=u'',
+        )
+
+    mailing_message_footer = schema.Text(
+        title=_(u"mailing_message_footer"),
+        default=u'',
+        )

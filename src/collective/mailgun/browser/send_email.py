@@ -13,6 +13,14 @@ from Products.CMFCore.utils import getToolByName
 from mailgun import MailgunAPI
 from mailgun.mailinglist import MailingList
 
+#from plone.app.contenttypes.interfaces import (
+#    ICollection,
+#    IDocument,
+#    INewsItem,
+#    IEvent,
+#)
+from plone.app.contenttypes.behaviors.richtext import IRichText
+
 from collective.mailgun.interfaces import IMailingSettings
 
 
@@ -28,16 +36,8 @@ def email_message(api_key, domain, address, from_email, subject, text):
 
 
 
-TEXT_TEMPLATE = """<h1>Message from the site</h1>
+## Default implementation of a "Send content to a mailing list" view 
 
-<p>
-%s
-</p>
-
-<p>Footer text</p>
-"""
-
-            
 class SendEmailView(BrowserView):
 
     #index = ViewPageTemplateFile('templates/xxxxx.pt')
@@ -54,9 +54,12 @@ class SendEmailView(BrowserView):
         domain = settings.mailing_domain
         address = settings.mailing_address
         from_email = settings.mailing_from_email
+
+        header = settings.mailing_message_header
+        footer = settings.mailing_message_footer
         
         subject = context.Title()
-        text = self.prepareText()
+        text = header + self.prepareText() + footer
 
         if request.has_key('preview'):
             return text
@@ -72,8 +75,10 @@ class SendEmailView(BrowserView):
         context = self.context
         request = self.request
 
-        # TODO: Adapt content type and extract the text... (using plone.api ?)
-        #       Start with documents...
-        text = TEXT_TEMPLATE % context.Title()
+        # Get the text from the content object if Dexterity and IRichText behavior.
+        text = '<h1>%s</h1>' % context.Title()
+        if IRichText.providedBy(context):
+            text = text + context.text.output
+        
         return text
         
