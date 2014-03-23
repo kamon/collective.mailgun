@@ -38,7 +38,7 @@ setup(name='collective.mailgun',
       install_requires=[
           'setuptools',  
           'mailgunapi-client==1.23',
-          'requests==2.3.0',
+          'requests==2.2.1',
           #'plone.api',
       ],
       extras_require={
