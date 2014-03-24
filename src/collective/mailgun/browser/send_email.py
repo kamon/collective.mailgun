@@ -54,7 +54,11 @@ class SendEmailView(BrowserView):
         footer = settings.mailing_message_footer
         
         subject = context.Title()
-        text = header + self.prepareText() + footer
+        text = self.prepareText()
+        if header:
+            text = header + text
+        if footer:
+            text = text + footer
 
         if request.has_key('preview'):
             return text
